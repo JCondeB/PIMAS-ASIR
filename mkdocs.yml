@@ -9,6 +9,7 @@ theme:
 nav:
   - Inicio: index.md
   - Entrega 1 - Propuesta inicial: entrega-1.md
+  - Entrega 2 - Análisis y diseño: entrega-2.md
   - Entrega 3 - Entorno de virtualización: entrega-3.md
 
 docs_dir: docs
