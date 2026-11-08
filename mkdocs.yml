@@ -8,5 +8,6 @@ theme:
 
 nav:
   - Inicio: index.md
+  - Entrega 3 - Entorno de virtualización: entrega-3.md
 
 docs_dir: docs
