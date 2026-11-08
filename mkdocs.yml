@@ -1,0 +1,12 @@
+site_name: PIMAS - Asesoría Tajo Gestión
+site_description: Proyecto Intermodular de ASIR
+site_author: Jesús Conde
+
+theme:
+  name: material
+  language: es
+
+nav:
+  - Inicio: index.md
+
+docs_dir: docs
