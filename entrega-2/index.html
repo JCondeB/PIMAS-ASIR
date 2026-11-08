@@ -1,0 +1,1147 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Proyecto Intermodular de ASIR">
+      
+      
+        <meta name="author" content="Jesús Conde">
+      
+      
+      
+        <link rel="prev" href="../entrega-1/">
+      
+      
+        <link rel="next" href="../entrega-3/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+      
+        <title>Entrega 2 - Análisis y diseño - PIMAS - Asesoría Tajo Gestión</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pimas-entrega-2" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="PIMAS - Asesoría Tajo Gestión" class="md-header__button md-logo" aria-label="PIMAS - Asesoría Tajo Gestión" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PIMAS - Asesoría Tajo Gestión
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Entrega 2 - Análisis y diseño
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="PIMAS - Asesoría Tajo Gestión" class="md-nav__button md-logo" aria-label="PIMAS - Asesoría Tajo Gestión" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    PIMAS - Asesoría Tajo Gestión
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entrega-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entrega 1 - Propuesta inicial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entrega 2 - Análisis y diseño
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entrega 2 - Análisis y diseño
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-contexto-y-alcance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Contexto y alcance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-requisitos-funcionales-y-de-seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Requisitos funcionales y de seguridad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-arquitectura-de-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Arquitectura de red
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-aplicacion-y-base-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Aplicación y base de datos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-usuarios-permisos-y-reglas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Usuarios, permisos y reglas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-proteccion-de-datos-copias-y-administracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Protección de datos, copias y administración
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-riesgos-y-viabilidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Riesgos y viabilidad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-plan-de-pruebas-y-resultados-esperados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Plan de pruebas y resultados esperados
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-planificacion-y-seguimiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Planificación y seguimiento
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-criterio-de-finalizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Criterio de finalización
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-precisiones-del-diseno-y-comprobacion-inicial-del-equipo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Precisiones del diseño y comprobación inicial del equipo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#111-viabilidad-comprobaciones-realizadas-y-pendientes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1. Viabilidad: comprobaciones realizadas y pendientes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#112-separacion-de-informacion-y-permisos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2. Separación de información y permisos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#113-acceso-administrativo-y-filtrado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3. Acceso administrativo y filtrado
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#114-politica-minima-de-respaldo-y-pruebas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.4. Política mínima de respaldo y pruebas
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entrega-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entrega 3 - Entorno de virtualización
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-contexto-y-alcance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Contexto y alcance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-requisitos-funcionales-y-de-seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Requisitos funcionales y de seguridad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-arquitectura-de-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Arquitectura de red
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-aplicacion-y-base-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Aplicación y base de datos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-usuarios-permisos-y-reglas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Usuarios, permisos y reglas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-proteccion-de-datos-copias-y-administracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Protección de datos, copias y administración
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-riesgos-y-viabilidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Riesgos y viabilidad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-plan-de-pruebas-y-resultados-esperados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Plan de pruebas y resultados esperados
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-planificacion-y-seguimiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Planificación y seguimiento
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-criterio-de-finalizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Criterio de finalización
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-precisiones-del-diseno-y-comprobacion-inicial-del-equipo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Precisiones del diseño y comprobación inicial del equipo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#111-viabilidad-comprobaciones-realizadas-y-pendientes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1. Viabilidad: comprobaciones realizadas y pendientes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#112-separacion-de-informacion-y-permisos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2. Separación de información y permisos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#113-acceso-administrativo-y-filtrado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3. Acceso administrativo y filtrado
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#114-politica-minima-de-respaldo-y-pruebas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.4. Política mínima de respaldo y pruebas
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="pimas-entrega-2">PIMAS · Entrega 2</h1>
+<p><strong>Análisis de requisitos, diseño de infraestructura, riesgos y planificación</strong></p>
+<p>Asesoría Tajo Gestión, S. L. · Empresa ficticia en Talavera de la Reina
+Alumno: Jesús Conde · 25 de octubre de 2026
+Estado: diseño propuesto; pendiente de validación práctica</p>
+<h2 id="1-contexto-y-alcance">1. Contexto y alcance</h2>
+<p>La asesoría simulada cuenta con 18 trabajadores repartidos entre dirección/administración, fiscal-contable y laboral. El crecimiento de la plantilla no ha ido acompañado de segmentación de red, definición formal de permisos, protección de los servicios internos ni procedimientos comprobados de recuperación.</p>
+<p>Se propone un laboratorio reducido que represente esos riesgos y permita probar medidas correctoras sin utilizar información real.</p>
+<p>El laboratorio no reproduce 18 puestos físicos. Utilizará cuentas de prueba para representar departamentos y un cliente de pruebas para verificar las restricciones.</p>
+<p>No se pretende acreditar cumplimiento integral del RGPD ni desplegar un servicio productivo.</p>
+<h2 id="2-requisitos-funcionales-y-de-seguridad">2. Requisitos funcionales y de seguridad</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requisito</th>
+<th>Verificación prevista</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RF-01</td>
+<td>Acceso autenticado a la aplicación web interna</td>
+<td>Inicio de sesión con cuenta válida e inválida</td>
+</tr>
+<tr>
+<td>RF-02</td>
+<td>Perfiles separados para dirección, fiscal, laboral y técnico</td>
+<td>Comprobar permisos distintos en GLPI</td>
+</tr>
+<tr>
+<td>RF-03</td>
+<td>Registro de solicitudes internas y activos de prueba en GLPI</td>
+<td>Crear y consultar ticket y activo ficticios</td>
+</tr>
+<tr>
+<td>RF-04</td>
+<td>Persistencia de la aplicación en MariaDB</td>
+<td>Comprobar conexión y datos tras reinicio</td>
+</tr>
+<tr>
+<td>RS-01</td>
+<td>Separación de usuarios y servidores mediante firewall</td>
+<td>Pruebas de tráfico permitido y denegado</td>
+</tr>
+<tr>
+<td>RS-02</td>
+<td>Acceso web autorizado; administración restringida</td>
+<td>HTTPS permitido y SSH bloqueado desde usuarios</td>
+</tr>
+<tr>
+<td>RS-03</td>
+<td>Registro de decisiones del firewall</td>
+<td>Consultar eventos de conexiones bloqueadas</td>
+</tr>
+<tr>
+<td>RS-04</td>
+<td>Copia y restauración de BD y configuración</td>
+<td>Restaurar en entorno de prueba</td>
+</tr>
+<tr>
+<td>RS-05</td>
+<td>Bastionado básico de Linux y servicio web</td>
+<td>Revisión de puertos, cuentas y actualizaciones</td>
+</tr>
+</tbody>
+</table>
+<p>La VPN queda como extensión condicionada a los recursos y al avance de los requisitos anteriores. IDS/IPS y SIEM completos quedan fuera del alcance obligatorio.</p>
+<h2 id="3-arquitectura-de-red">3. Arquitectura de red</h2>
+<p><img alt="Esquema lógico provisional de la infraestructura" src="../imagenes/entrega-2-diagrama.png" /></p>
+<p>Esquema lógico provisional.</p>
+<p>OPNsense tendrá tres interfaces virtuales: WAN conectada a NAT para descargas/actualizaciones, red de usuarios y red de servidores.</p>
+<p>La conexión del Windows 11 anfitrión a la red de usuarios dependerá de la configuración del hipervisor; alternativamente se arrancará un cliente Linux temporal. No se abrirán puertos de la WAN a Internet.</p>
+<table>
+<thead>
+<tr>
+<th>Zona</th>
+<th>Red propuesta</th>
+<th>Equipos / puerta de enlace</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Usuarios</td>
+<td>10.10.10.0/24</td>
+<td>Firewall 10.10.10.1; cliente de prueba</td>
+</tr>
+<tr>
+<td>Servidores</td>
+<td>10.10.20.0/24</td>
+<td>Firewall 10.10.20.1; Ubuntu 10.10.20.10</td>
+</tr>
+<tr>
+<td>WAN laboratorio</td>
+<td>NAT del hipervisor</td>
+<td>IP asignada automáticamente</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-aplicacion-y-base-de-datos">4. Aplicación y base de datos</h2>
+<p>Se propone GLPI como aplicación web de gestión interna de incidencias e inventario.</p>
+<p>En una asesoría de 18 empleados permitiría canalizar solicitudes de soporte y registrar equipos, sin desarrollar software propio. GLPI requiere un SGBD compatible; se prevé MariaDB, instalado en el mismo Ubuntu Server para limitar el consumo de recursos. La versión y sus requisitos exactos se verificarán antes del despliegue.</p>
+<p>La base de datos almacenará usuarios, incidencias y activos de prueba de GLPI; no se almacenarán expedientes reales de clientes. La conexión a MariaDB se limitará al servidor local (127.0.0.1) y no se publicará el puerto 3306 a las redes de usuarios. HTTPS se configurará con certificado de laboratorio, explicando sus limitaciones.</p>
+<h2 id="5-usuarios-permisos-y-reglas">5. Usuarios, permisos y reglas</h2>
+<table>
+<thead>
+<tr>
+<th>Perfil</th>
+<th>Perfil</th>
+<th>Acceso previsto</th>
+<th>Acceso previsto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Empleado fiscal</td>
+<td>Empleado fiscal</td>
+<td>Iniciar/consultar sus tickets; sin administración</td>
+<td>Iniciar/consultar sus tickets; sin administración</td>
+</tr>
+<tr>
+<td>Empleado laboral</td>
+<td>Empleado laboral</td>
+<td>Iniciar/consultar sus tickets; sin administración</td>
+<td>Iniciar/consultar sus tickets; sin administración</td>
+</tr>
+<tr>
+<td>Dirección</td>
+<td>Dirección</td>
+<td>Consultar informes o tickets según permisos configurados</td>
+<td>Consultar informes o tickets según permisos configurados</td>
+</tr>
+<tr>
+<td>Administrador TI</td>
+<td>Administrador TI</td>
+<td>Administrar GLPI, Linux y firewall mediante credenciales separadas</td>
+<td>Administrar GLPI, Linux y firewall mediante credenciales separadas</td>
+</tr>
+<tr>
+<td>Origen → destino</td>
+<td>Servicio</td>
+<td>Servicio</td>
+<td>Política prevista</td>
+</tr>
+<tr>
+<td>Usuarios → GLPI</td>
+<td>TCP 443</td>
+<td>TCP 443</td>
+<td>Permitir</td>
+</tr>
+<tr>
+<td>Usuarios → Ubuntu</td>
+<td>TCP 22</td>
+<td>TCP 22</td>
+<td>Denegar</td>
+</tr>
+<tr>
+<td>Usuarios → MariaDB</td>
+<td>TCP 3306</td>
+<td>TCP 3306</td>
+<td>Denegar</td>
+</tr>
+<tr>
+<td>Administración → Ubuntu</td>
+<td>TCP 22</td>
+<td>TCP 22</td>
+<td>Permitir solo desde origen administrativo definido</td>
+</tr>
+<tr>
+<td>Servidores → Internet</td>
+<td>Actualizaciones, DNS, NTP</td>
+<td>Actualizaciones, DNS, NTP</td>
+<td>Permitir lo necesario; registrar</td>
+</tr>
+<tr>
+<td>Otros flujos entre zonas</td>
+<td>Cualquiera</td>
+<td>Cualquiera</td>
+<td>Denegar por defecto</td>
+</tr>
+</tbody>
+</table>
+<p>Las reglas se definirán por origen, destino, puerto y justificación. Se comprobará que el tráfico permitido realmente pasa por OPNsense; no bastará con cambiar de subred si el cliente dispone de una ruta alternativa.</p>
+<h2 id="6-proteccion-de-datos-copias-y-administracion">6. Protección de datos, copias y administración</h2>
+<p>Los datos de la simulación serán ficticios.</p>
+<p>Se aplicarán mínimo privilegio, contraseñas diferenciadas, cuentas no compartidas, actualizaciones, cierre de servicios innecesarios y restricción de acceso administrativo.</p>
+<p>La aplicación se usará para incidencias internas, no como archivo de nóminas o declaraciones fiscales.</p>
+<p>Se prevé copia lógica de MariaDB mediante herramienta compatible (p. ej., mariadb-dump), junto con la configuración y los ficheros necesarios de GLPI.</p>
+<p>Se documentarán frecuencia propuesta diaria, retención semanal para el escenario simulado, ubicación separada del original y procedimiento de restauración. La prueba consistirá en generar un registro ficticio, respaldarlo y restaurarlo en un entorno controlado, verificando su recuperación.</p>
+<p>La retención y almacenamiento definitivo dependerán del espacio disponible.</p>
+<h2 id="7-riesgos-y-viabilidad">7. Riesgos y viabilidad</h2>
+<table>
+<thead>
+<tr>
+<th>Riesgo</th>
+<th>Impacto</th>
+<th>Mitigación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Solo ~39 GB libres en SSD</td>
+<td>Alto</td>
+<td>VMs mínimas, discos dinámicos, sin snapshots prolongados; medir consumo antes de instalar</td>
+</tr>
+<tr>
+<td>12 GB RAM y Windows 11</td>
+<td>Alto</td>
+<td>OPNsense ~2 GB; Ubuntu ~3 GB como hipótesis; cerrar aplicaciones y medir</td>
+</tr>
+<tr>
+<td>GLPI requiere dependencias y recursos</td>
+<td>Medio</td>
+<td>Verificar compatibilidad y probar instalación temprana; revisar servicio si no cabe</td>
+</tr>
+<tr>
+<td>Errores en redes virtuales</td>
+<td>Medio</td>
+<td>Validar interfaces y rutas con ping, curl y logs</td>
+</tr>
+<tr>
+<td>Plazo corto</td>
+<td>Alto</td>
+<td>Priorizar firewall + aplicación + BD + restauración; VPN opcional</td>
+</tr>
+</tbody>
+</table>
+<p>Comprobaciones previas obligatorias: espacio libre actualizado, soporte de virtualización en BIOS/UEFI, estado de Hyper-V/VirtualBox, memoria disponible y pruebas de arranque simultáneo. Las cifras de RAM son estimaciones, no resultados medidos. Si las dos VMs no funcionan con estabilidad, será necesario revisar alcance y recursos con la profesora antes de prometer un despliegue completo.</p>
+<h2 id="8-plan-de-pruebas-y-resultados-esperados">8. Plan de pruebas y resultados esperados</h2>
+<table>
+<thead>
+<tr>
+<th>Prueba</th>
+<th>Acción</th>
+<th>Resultado esperado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P-01</td>
+<td>Acceder a GLPI por HTTPS desde usuarios</td>
+<td>Acceso correcto</td>
+</tr>
+<tr>
+<td>P-02</td>
+<td>Intentar SSH desde usuario no autorizado</td>
+<td>Conexión bloqueada y registrada</td>
+</tr>
+<tr>
+<td>P-03</td>
+<td>Acceder a BD desde red usuarios</td>
+<td>Puerto no accesible</td>
+</tr>
+<tr>
+<td>P-04</td>
+<td>Iniciar sesión con dos perfiles distintos</td>
+<td>Permisos acordes a su rol</td>
+</tr>
+<tr>
+<td>P-05</td>
+<td>Crear ticket y reiniciar servicio</td>
+<td>Información conservada en MariaDB</td>
+</tr>
+<tr>
+<td>P-06</td>
+<td>Restaurar copia de datos ficticios</td>
+<td>Datos recuperados y verificables</td>
+</tr>
+<tr>
+<td>P-07</td>
+<td>Revisar servicios expuestos</td>
+<td>Solo puertos necesarios</td>
+</tr>
+</tbody>
+</table>
+<p>Estas pruebas son planificadas. No se han ejecutado ni se aportan resultados reales en esta entrega.</p>
+<h2 id="9-planificacion-y-seguimiento">9. Planificación y seguimiento</h2>
+<table>
+<thead>
+<tr>
+<th>Periodo</th>
+<th>Actividad / evidencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>25 octubre</td>
+<td>Entrega 2: requisitos, arquitectura, riesgos y plan</td>
+</tr>
+<tr>
+<td>26 oct.–8 nov.</td>
+<td>Repositorios, virtualización y verificación de recursos; capturas de red</td>
+</tr>
+<tr>
+<td>9–22 noviembre</td>
+<td>Firewall, Ubuntu, GLPI y MariaDB; primera prueba funcional</td>
+</tr>
+<tr>
+<td>23 nov.–6 dic.</td>
+<td>Reglas, roles, backups, pruebas y registro de incidencias</td>
+</tr>
+<tr>
+<td>Antes de defensa</td>
+<td>Memoria consolidada, diagramas, resultados y presentación</td>
+</tr>
+</tbody>
+</table>
+<p>Se mantendrá un repositorio GitHub con documentación, diagramas, inventario de requisitos, pruebas e incidencias. No se publicarán contraseñas, claves, datos personales ni configuraciones con secretos. Cada cambio de alcance se registrará con motivo y efecto sobre el calendario.</p>
+<h2 id="10-criterio-de-finalizacion">10. Criterio de finalización</h2>
+<p>Se considerará que el prototipo cumple el alcance principal cuando el firewall separe las redes, la aplicación GLPI funcione con MariaDB, existan perfiles con permisos diferenciados, las reglas de acceso se comprueben y una copia de datos ficticios pueda restaurarse.</p>
+<p>La defensa mostrará capturas verificables y, si la estabilidad del equipo lo permite, una demostración breve en directo.</p>
+<h2 id="11-precisiones-del-diseno-y-comprobacion-inicial-del-equipo">11. Precisiones del diseño y comprobación inicial del equipo</h2>
+<p>Esta sección concreta las condiciones técnicas del diseño sin presentar como realizadas las instalaciones o pruebas que corresponden a fases posteriores.</p>
+<h2 id="111-viabilidad-comprobaciones-realizadas-y-pendientes">11.1. Viabilidad: comprobaciones realizadas y pendientes</h2>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Dato comprobado</th>
+<th>Consecuencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Virtualización</td>
+<td>Habilitada en Administrador de tareas de Windows 11</td>
+<td>Permite iniciar la fase de pruebas con VMware Workstation.</td>
+</tr>
+<tr>
+<td>Procesador</td>
+<td>Intel Core i7-1065G7; 4 núcleos, 8 hilos</td>
+<td>Adecuado como hipótesis para dos máquinas ligeras.</td>
+</tr>
+<tr>
+<td>Memoria</td>
+<td>12 GB instalados; 5,3 de 11,7 GB usados (45 %) tras reinicio</td>
+<td>Queda margen aproximado, pero hay que medir uso simultáneo real.</td>
+</tr>
+<tr>
+<td>Almacenamiento</td>
+<td>Último dato facilitado: unos 39 GB libres</td>
+<td>Restricción principal; falta verificar espacio actual y liberar almacenamiento.</td>
+</tr>
+<tr>
+<td>Hipervisor</td>
+<td>VMware Workstation ya instalado</td>
+<td>Pendiente verificar versión, redes virtuales y arranque de las máquinas.</td>
+</tr>
+</tbody>
+</table>
+<p>La viabilidad del despliegue completo todavía NO está verificada. Antes de instalar GLPI se comprobarán espacio libre, creación de redes virtuales, arranque simultáneo de OPNsense y Ubuntu Server, consumo de memoria y disco.</p>
+<p>Si los recursos no bastan, se reducirá el laboratorio o se solicitará a la docente autorización para ajustar el alcance; no se eliminarán requisitos de forma unilateral.</p>
+<h2 id="112-separacion-de-informacion-y-permisos">11.2. Separación de información y permisos</h2>
+<p>GLPI se utilizará para incidencias internas e inventario, con datos ficticios y perfiles diferenciados.</p>
+<p>No se presentará como gestor de expedientes fiscales o laborales.</p>
+<p>Para demostrar la protección de documentos de la asesoría se prevén carpetas de prueba en Ubuntu Server, con grupos fiscal, laboral y dirección y permisos de sistema de archivos; se verificarán accesos permitidos y denegados con cuentas de prueba.</p>
+<p>La forma concreta de acceso a los archivos (local o servicio de compartición) se decidirá tras comprobar recursos y se documentará antes de la implementación.</p>
+<h2 id="113-acceso-administrativo-y-filtrado">11.3. Acceso administrativo y filtrado</h2>
+<p>El cliente de administración será el Windows 11 anfitrión, conectado mediante una interfaz virtual de VMware a la red de usuarios de laboratorio.</p>
+<p>Se reservará, como hipótesis de direccionamiento, 10.10.10.50/24 para el equipo de administración y 10.10.20.10/24 para Ubuntu.</p>
+<p>El firewall permitirá SSH TCP/22 hacia Ubuntu únicamente desde 10.10.10.50; bloqueará ese puerto desde otros orígenes de usuarios y no expondrá MariaDB TCP/3306 a la red. HTTPS TCP/443 hacia GLPI se permitirá desde la red de usuarios.</p>
+<p>La configuración de VMnet y el enrutamiento deben validarse en el despliegue para asegurar que todo tráfico entre subredes atraviese OPNsense. Se evitará la conexión directa del anfitrión a la red de servidores.</p>
+<h2 id="114-politica-minima-de-respaldo-y-pruebas">11.4. Política mínima de respaldo y pruebas</h2>
+<p>Se planifica un respaldo lógico de MariaDB, de los archivos y configuración necesarios para recuperar GLPI y de una muestra de documentos ficticios.</p>
+<p>Se documentará la ubicación, frecuencia y retención previstas, y se efectuará una restauración de prueba antes de la defensa.</p>
+<p>Con el espacio actual, no se presupone almacenamiento suficiente para conservar múltiples copias dentro del mismo SSD; la estrategia definitiva dependerá de la comprobación de capacidad.</p>
+<p>Pruebas adicionales previstas: P-08, usuario fiscal accede a su carpeta y no a la laboral; P-09, usuario laboral accede a su carpeta y no a la fiscal; P-10, SSH desde el equipo administrativo permitido y desde usuario ordinario denegado; P-11, restauración de documentos ficticios y datos de aplicación a partir del respaldo. Ninguna de estas pruebas se presenta como ejecutada.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

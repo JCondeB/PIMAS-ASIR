@@ -1,0 +1,871 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Proyecto Intermodular de ASIR">
+      
+      
+        <meta name="author" content="Jesús Conde">
+      
+      
+      
+        <link rel="prev" href="../entrega-2/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+      
+        <title>Entrega 3 - Entorno de virtualización - PIMAS - Asesoría Tajo Gestión</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#entrega-3-preparacion-del-entorno-de-virtualizacion-y-repositorio" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="PIMAS - Asesoría Tajo Gestión" class="md-header__button md-logo" aria-label="PIMAS - Asesoría Tajo Gestión" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PIMAS - Asesoría Tajo Gestión
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Entrega 3 - Entorno de virtualización
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="PIMAS - Asesoría Tajo Gestión" class="md-nav__button md-logo" aria-label="PIMAS - Asesoría Tajo Gestión" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    PIMAS - Asesoría Tajo Gestión
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entrega-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entrega 1 - Propuesta inicial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entrega-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entrega 2 - Análisis y diseño
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entrega 3 - Entorno de virtualización
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entrega 3 - Entorno de virtualización
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#2-equipo-anfitrion-y-viabilidad-inicial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Equipo anfitrión y viabilidad inicial
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-diseno-de-redes-virtuales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Diseño de redes virtuales
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-creacion-de-las-maquinas-virtuales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Creación de las máquinas virtuales
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-configuracion-inicial-y-verificacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Configuración inicial y verificación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-incidencias-y-cambios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Incidencias y cambios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-repositorio-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Repositorio GitHub
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-resultados-y-siguientes-pasos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Resultados y siguientes pasos
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#2-equipo-anfitrion-y-viabilidad-inicial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Equipo anfitrión y viabilidad inicial
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-diseno-de-redes-virtuales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Diseño de redes virtuales
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-creacion-de-las-maquinas-virtuales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Creación de las máquinas virtuales
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-configuracion-inicial-y-verificacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Configuración inicial y verificación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-incidencias-y-cambios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Incidencias y cambios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-repositorio-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Repositorio GitHub
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-resultados-y-siguientes-pasos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Resultados y siguientes pasos
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="entrega-3-preparacion-del-entorno-de-virtualizacion-y-repositorio">Entrega 3. Preparación del entorno de virtualización y repositorio</h1>
+<p><strong>Proyecto:</strong> Asesoría Tajo Gestión, S. L.<br />
+<strong>Alumno:</strong> Jesús Conde<br />
+<strong>Fecha:</strong> 8 de noviembre de 2026</p>
+<blockquote>
+<p>Documentación del despliegue y las pruebas del laboratorio. La configuración de GitHub y la publicación web se han completado posteriormente a la redacción inicial del informe.</p>
+</blockquote>
+<p>Contexto y objetivos</p>
+<p>Esta tercera fase continúa el diseño aprobado para la asesoría ficticia de 18 empleados. Se ha desplegado un laboratorio mediante VMware Workstation 16 Pro, con OPNsense como cortafuegos y Ubuntu Server como servidor de la infraestructura. El entorno dispone de redes diferenciadas para usuarios y servidores, con comunicación a través de OPNsense.</p>
+<p>Los objetivos de esta fase son instalar y configurar ambas máquinas virtuales, establecer el direccionamiento y las rutas de red, verificar la conectividad interna y externa, comprobar la administración remota mediante SSH y documentar las incidencias y soluciones aplicadas. Se han completado las pruebas de funcionamiento simultáneo, consumo de recursos y filtrado de tráfico. Queda pendiente la publicación del repositorio GitHub. La instalación de GLPI y MariaDB se realizará en fases posteriores.</p>
+<h2 id="2-equipo-anfitrion-y-viabilidad-inicial">2. Equipo anfitrión y viabilidad inicial</h2>
+<table>
+<thead>
+<tr>
+<th>Recurso</th>
+<th>Comprobación inicial</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Equipo</td>
+<td>Portátil Windows 11; Intel Core i7-1065G7, 4 núcleos y 8 hilos</td>
+</tr>
+<tr>
+<td>Memoria</td>
+<td>12 GB instalados; 5,3 GB utilizados (45 %) tras reinicio</td>
+</tr>
+<tr>
+<td>Disco</td>
+<td>SSD NVMe de 475 GB; 271 GB libres tras retirar máquinas antiguas</td>
+</tr>
+<tr>
+<td>Virtualización</td>
+<td>Habilitada en el Administrador de tareas</td>
+</tr>
+<tr>
+<td>Hipervisor</td>
+<td>VMware Workstation 16 Pro, versión 16.2.4, build 20089737</td>
+</tr>
+</tbody>
+</table>
+<p>El equipo anfitrión dispone de los recursos necesarios para el despliegue inicial del laboratorio. Se ha completado la instalación de OPNsense y Ubuntu Server en VMware Workstation 16 Pro, comprobándose el funcionamiento de ambos sistemas y la comunicación entre sus respectivas redes.</p>
+<p>La viabilidad del entorno se ha verificado mediante pruebas de conectividad interna, acceso a Internet y administración remota por SSH. También se ha comprobado el funcionamiento simultáneo de ambas máquinas virtuales y el consumo de recursos del equipo anfitrión. Durante las pruebas se registró una utilización de memoria RAM del 96 % (11,2 GB), mientras que el consumo de CPU y la actividad del disco fueron reducidos. Este elevado uso de memoria constituye una limitación que deberá tenerse en cuenta al incorporar nuevos servicios en fases posteriores.</p>
+<p><img alt="Evidencia 01 de la Entrega 3" src="../imagenes/evidencia-01.png" /></p>
+<p>Características del equipo anfitrión utilizado para el desarrollo del laboratorio, incluyendo procesador, memoria RAM y arquitectura del sistema.</p>
+<p><img alt="Evidencia 02 de la Entrega 3" src="../imagenes/evidencia-02.png" /></p>
+<p>Espacio de almacenamiento disponible en el equipo anfitrión tras la eliminación de las máquinas virtuales anteriores.</p>
+<p><img alt="Evidencia 03 de la Entrega 3" src="../imagenes/evidencia-03.png" /></p>
+<p>Comprobación de la virtualización por hardware habilitada y del consumo de memoria RAM del equipo anfitrión antes del despliegue del laboratorio.</p>
+<p><img alt="Evidencia 04 de la Entrega 3" src="../imagenes/evidencia-04.png" /></p>
+<p>Identificación de VMware Workstation 16 Pro, versión 16.2.4, utilizado como plataforma de virtualización del laboratorio.</p>
+<h2 id="3-diseno-de-redes-virtuales">3. Diseño de redes virtuales</h2>
+<p><img alt="Evidencia 05 de la Entrega 3" src="../imagenes/evidencia-05.png" /></p>
+<p>Configuración inicial de las redes virtuales disponibles en VMware Workstation antes de crear las redes del laboratorio.</p>
+<p>La infraestructura de red del laboratorio se ha configurado mediante tres segmentos virtuales independientes en VMware Workstation: una red WAN para el acceso a Internet mediante NAT, una red de usuarios (192.168.10.0/24) y una red de servidores (192.168.20.0/24).</p>
+<p>OPNsense actúa como cortafuegos y dispositivo de enrutamiento entre ambas redes internas, permitiendo controlar las comunicaciones mediante reglas de filtrado.</p>
+<table>
+<thead>
+<tr>
+<th>Red</th>
+<th>Configuración aplicada</th>
+<th>Función</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WAN</td>
+<td>VMnet8 / NAT</td>
+<td>Salida de laboratorio; IP asignada por DHCP</td>
+</tr>
+<tr>
+<td>Usuarios</td>
+<td>VMnet2 / host-only</td>
+<td>Windows anfitrión como cliente; 192.168.10.0/24</td>
+</tr>
+<tr>
+<td>Servidores</td>
+<td>VMnet3 / host-only</td>
+<td>Ubuntu Server; 192.168.20.0/24</td>
+</tr>
+</tbody>
+</table>
+<p>El direccionamiento configurado es el siguiente: OPNsense dispone de la dirección 192.168.10.1/24 en LAN (usuarios), 192.168.20.1/24 en OPT1 (servidores) y una dirección obtenida mediante DHCP en WAN (VMnet8). Ubuntu Server utiliza la dirección estática 192.168.20.10/24, con puerta de enlace 192.168.20.1.</p>
+<p>Se ha deshabilitado el servicio DHCP de VMware en las redes internas. La red de servidores VMnet3 no dispone de conexión directa con el anfitrión Windows 11. Para permitir la comunicación desde Windows hacia Ubuntu Server se ha configurado una ruta estática hacia 192.168.20.0/24 a través de OPNsense (192.168.10.1), verificándose posteriormente la conectividad mediante ICMP y SSH.</p>
+<p><img alt="Evidencia 06 de la Entrega 3" src="../imagenes/evidencia-06.png" /></p>
+<p>Configuración de la red virtual VMnet2 para los usuarios de la asesoría, con direccionamiento 192.168.10.0/24, adaptador del anfitrión habilitado y servicio DHCP de VMware desactivado</p>
+<p><img alt="Evidencia 07 de la Entrega 3" src="../imagenes/evidencia-07.png" /></p>
+<p>Configuración de la red virtual VMnet3 destinada a servidores, con direccionamiento 192.168.20.0/24, sin DHCP de VMware ni conexión directa al anfitrión.</p>
+<p><img alt="Evidencia 08 de la Entrega 3" src="../imagenes/evidencia-08.png" /></p>
+<p>Configuración de la red NAT VMnet8, utilizada como conexión WAN del firewall OPNsense.</p>
+<h2 id="4-creacion-de-las-maquinas-virtuales">4. Creación de las máquinas virtuales</h2>
+<table>
+<thead>
+<tr>
+<th>Máquina</th>
+<th>Configuración final</th>
+<th>Conexiones</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OPNsense</td>
+<td>3 GB RAM; 2 vCPU; disco virtual 20 GB</td>
+<td>WAN VMnet8; usuarios VMnet2; servidores VMnet3</td>
+</tr>
+<tr>
+<td>Ubuntu Server</td>
+<td>3 GB RAM; 2 vCPU; disco virtual 35 GB</td>
+<td>Únicamente VMnet3;</td>
+</tr>
+</tbody>
+</table>
+<p>Se han creado e instalado las dos máquinas virtuales previstas utilizando VMware Workstation 16 Pro. Durante la instalación de OPNsense fue necesario ampliar la memoria RAM inicialmente asignada de 2 a 3 GB para cumplir los requisitos del instalador. Ubuntu Server se configuró con 3 GB de RAM, dos procesadores virtuales y un disco de 35 GB.</p>
+<p>Ambos sistemas han quedado instalados y operativos, con sus interfaces de red configuradas y conectividad verificada. Ubuntu Server dispone además del servicio OpenSSH, que permite su administración remota desde Windows 11.</p>
+<p><img alt="Evidencia 09 de la Entrega 3" src="../imagenes/evidencia-09.png" /></p>
+<p><img alt="Evidencia 10 de la Entrega 3" src="../imagenes/evidencia-10.png" /></p>
+<p>Configuración inicial de hardware de la máquina virtual PIMAS-OPNsense en VMware Workstation, con 2 GB de memoria RAM, dos núcleos de procesamiento y tres adaptadores de red destinados a WAN, usuarios y servidores. Posteriormente, la memoria RAM se amplió a 3 GB para completar la instalación.</p>
+<p><img alt="Evidencia 11 de la Entrega 3" src="../imagenes/evidencia-11.png" /></p>
+<p>Máquina virtual PIMAS-OPNsense creada en VMware Workstation 16 Pro, inicialmente con 2 GB de memoria RAM, dos núcleos virtuales, disco SCSI de 20 GB y tres adaptadores de red conectados a VMnet8 (WAN), VMnet2 (usuarios) y VMnet3 (servidores). La configuración final utiliza 3 GB de RAM.</p>
+<p>La máquina virtual PIMAS-OPNsense se creó con tres adaptadores de red conectados a VMnet8 (WAN), VMnet2 (LAN) y VMnet3 (OPT1). Tras completar la instalación de OPNsense 26.7, se configuraron las interfaces con direccionamiento DHCP en WAN y direcciones estáticas en las redes internas: 192.168.10.1/24 para usuarios y 192.168.20.1/24 para servidores.</p>
+<p>Se verificó el acceso a la interfaz web de administración desde Windows 11 mediante HTTPS y se configuraron las reglas necesarias para permitir las comunicaciones comprobadas entre los segmentos de red.</p>
+<p>Durante la instalación de OPNsense 26.7 se detectó que el instalador UFS recomendaba disponer de al menos 3 GB de memoria RAM. La configuración inicial de la máquina virtual contemplaba 2 GB, por lo que se decidió aumentar la asignación a 3 GB antes de continuar con la instalación. La ampliación permitió continuar y completar correctamente la instalación del cortafuegos.</p>
+<p><img alt="Evidencia 12 de la Entrega 3" src="../imagenes/evidencia-12.png" /></p>
+<p>Consola de OPNsense 26.7 tras la instalación, con las interfaces WAN, LAN y OPT1 asignadas y la dirección IPv4 de LAN configurada.</p>
+<p><img alt="Evidencia 13 de la Entrega 3" src="../imagenes/evidencia-13.png" /></p>
+<p>Configuración final de las interfaces de OPNsense 26.7, con WAN mediante DHCP y direccionamiento estático en las redes de usuarios (192.168.10.0/24) y servidores (192.168.20.0/24).</p>
+<p><img alt="Evidencia 14 de la Entrega 3" src="../imagenes/evidencia-14.png" /></p>
+<p>Configuración inicial de la máquina virtual PIMAS-UbuntuServer en VMware Workstation, con 3 GB de memoria RAM, dos núcleos de procesamiento, disco virtual de 35 GB y conexión a la red de servidores VMnet3.</p>
+<p><img alt="Evidencia 15 de la Entrega 3" src="../imagenes/evidencia-15.png" /></p>
+<p>Ubuntu Server 26.04.1 LTS iniciado correctamente en VMware Workstation, con la interfaz de red ens33 activa y la dirección IPv4 estática 192.168.20.10/24 configurada.</p>
+<p><img alt="Evidencia 16 de la Entrega 3" src="../imagenes/evidencia-16.png" /></p>
+<p>Verificación de la conectividad entre Ubuntu Server y el firewall OPNsense mediante ICMP, con cuatro paquetes recibidos y un 0 % de pérdida.</p>
+<p><img alt="Evidencia 17 de la Entrega 3" src="../imagenes/evidencia-17.png" /></p>
+<p>Verificación de la conectividad externa de Ubuntu Server a través del firewall OPNsense, mediante una prueba ICMP a 1.1.1.1 con un 0 % de pérdida de paquetes.</p>
+<p><img alt="Evidencia 18 de la Entrega 3" src="../imagenes/evidencia-18.png" /></p>
+<p>Comprobación de la resolución DNS y conectividad externa de Ubuntu Server a través de OPNsense, mediante consultas al dominio archive.ubuntu.com, con un 100 % de paquetes recibidos.</p>
+<p><img alt="Evidencia 19 de la Entrega 3" src="../imagenes/evidencia-19.png" /></p>
+<p>Verificación del acceso de Ubuntu Server a los repositorios oficiales mediante APT, a través del firewall OPNsense, con descarga correcta de los índices de paquetes.</p>
+<p><img alt="Evidencia 20 de la Entrega 3" src="../imagenes/evidencia-20.png" /></p>
+<p>Verificación de la conectividad de Ubuntu Server tras la actualización del sistema. Se comprueba la comunicación con OPNsense (192.168.20.1), el acceso a Internet (1.1.1.1) y la resolución DNS mediante archive.ubuntu.com, con un 0 % de pérdida de paquetes.</p>
+<p><img alt="Evidencia 21 de la Entrega 3" src="../imagenes/evidencia-21.png" /></p>
+<p>Verificación de la conectividad entre Windows 11 y Ubuntu Server a través de OPNsense. Tras configurar una ruta estática hacia la red 192.168.20.0/24, se comprueba la comunicación mediante ICMP con cuatro respuestas satisfactorias y un 0 % de pérdida de paquetes.</p>
+<p><img alt="Evidencia 22 de la Entrega 3" src="../imagenes/evidencia-22.png" /></p>
+<p>Acceso remoto mediante SSH desde Windows 11 a Ubuntu Server (192.168.20.10), utilizando el usuario pimasadmin. Se verifica la autenticación y el establecimiento de una sesión de administración remota a través de OPNsense.</p>
+<h2 id="5-configuracion-inicial-y-verificacion">5. Configuración inicial y verificación</h2>
+<p>Una vez instalados OPNsense 26.7 y Ubuntu Server 26.04.1 LTS, se realizaron pruebas de configuración y conectividad para verificar el funcionamiento de la infraestructura virtual.</p>
+<p>Se comprobó el direccionamiento de las interfaces, la comunicación entre Ubuntu Server y OPNsense, el acceso a Internet desde la red de servidores y la conectividad desde Windows 11 hacia ambas redes internas.</p>
+<p>Las pruebas se realizaron utilizando OPNsense como dispositivo de enrutamiento entre las redes de usuarios y servidores. También se verificó el acceso remoto a Ubuntu Server mediante SSH desde el equipo anfitrión.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Prueba prevista</th>
+<th>Evidencia y resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P01</td>
+<td>Arranque simultáneo de OPNsense y Ubuntu</td>
+<td>Correcto. Ambas máquinas virtuales operativas simultáneamente.</td>
+</tr>
+<tr>
+<td>P02</td>
+<td>IP de interfaces y rutas</td>
+<td>Correcto. LAN: 192.168.10.1; OPT1: 192.168.20.1; Ubuntu: 192.168.20.10.</td>
+</tr>
+<tr>
+<td>P03</td>
+<td>Windows alcanza interfaz de usuarios de OPNsense</td>
+<td>Correcto. Ping y acceso HTTPS a 192.168.10.1.</td>
+</tr>
+<tr>
+<td>P04</td>
+<td>Ubuntu alcanza gateway de servidores</td>
+<td>Correcto: 0 % de pérdida</td>
+</tr>
+<tr>
+<td>P05</td>
+<td>Acceso de usuarios a servidor a través de OPNsense</td>
+<td>Correcto. Ping y conexión SSH desde Windows 11.</td>
+</tr>
+<tr>
+<td>P06</td>
+<td>Bloqueo de tráfico no autorizado</td>
+<td>Correcto. Conexión TCP al puerto 22 bloqueada y registrada en OPNsense.</td>
+</tr>
+<tr>
+<td>P07</td>
+<td>Consumo de RAM y disco con ambas VMs activas</td>
+<td>Verificado. RAM al 96 % (11,2 GB utilizados). CPU y actividad de disco reducidas.</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Evidencia 23 de la Entrega 3" src="../imagenes/evidencia-23.png" /></p>
+<p>Verificación del bloqueo de tráfico no autorizado mediante OPNsense. El registro del cortafuegos muestra el rechazo de conexiones TCP desde Ubuntu Server (192.168.20.10) hacia el puerto 22 del destino 1.1.1.1, conforme a la política de denegación predeterminada.</p>
+<p><img alt="Evidencia 24 de la Entrega 3" src="../imagenes/evidencia-24.png" /></p>
+<p><img alt="Evidencia 25 de la Entrega 3" src="../imagenes/evidencia-25.png" /></p>
+<p>Las pruebas realizadas han confirmado la comunicación entre las redes de usuarios y servidores a través de OPNsense. Se ha verificado la conectividad de Ubuntu Server con su puerta de enlace, el acceso a Internet, la resolución de nombres DNS y el establecimiento de una conexión SSH desde Windows 11 hacia Ubuntu Server.</p>
+<p>Asimismo, se ha comprobado el funcionamiento de las reglas del cortafuegos mediante una prueba de conexión TCP al puerto 22, cuyo bloqueo quedó registrado en OPNsense conforme a la política de denegación predeterminada.</p>
+<p>Finalmente, se evaluó el consumo de recursos del equipo anfitrión durante la ejecución simultánea de las máquinas virtuales. Se registró una utilización de memoria RAM del 96 %, mientras que el consumo de CPU y la actividad del disco fueron reducidos. Esta limitación de memoria deberá tenerse en cuenta en las siguientes fases del proyecto, especialmente durante la incorporación de nuevos servicios.</p>
+<h2 id="6-incidencias-y-cambios">6. Incidencias y cambios</h2>
+<table>
+<thead>
+<tr>
+<th>Fecha</th>
+<th>Incidencia / cambio</th>
+<th>Solución / estado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Antes del despliegue</td>
+<td>Almacenamiento insuficiente para laboratorio</td>
+<td>Se retiraron máquinas virtuales antiguas; 271 GB libres.</td>
+</tr>
+<tr>
+<td>Durante la instalación</td>
+<td>Memoria asignada inicialmente insuficiente para OPNsense</td>
+<td>Se amplió la RAM asignada de 2 a 3 GB.</td>
+</tr>
+<tr>
+<td>Durante la configuración de red</td>
+<td>Ubuntu no alcanzaba inicialmente la interfaz OPT1</td>
+<td>Se revisaron las reglas ICMP; comunicación con 192.168.20.1 verificada.</td>
+</tr>
+<tr>
+<td>Durante las pruebas de conectividad</td>
+<td>Ubuntu no accedía inicialmente a Internet</td>
+<td>Se revisaron reglas y ruta predeterminada; ping a 1.1.1.1 correcto.</td>
+</tr>
+<tr>
+<td>Durante las pruebas DNS</td>
+<td>Fallo temporal de resolución de nombres y acceso a repositorios</td>
+<td>Se revisaron las reglas y la conectividad; DNS y actualización de Ubuntu verificados.</td>
+</tr>
+<tr>
+<td>Durante las pruebas desde Windows</td>
+<td>Windows no alcanzaba Ubuntu Server</td>
+<td>Se añadió ruta a 192.168.20.0/24 vía 192.168.10.1; ping y SSH correctos.</td>
+</tr>
+<tr>
+<td>Durante la validación del firewall</td>
+<td>Verificación del bloqueo de tráfico no autorizado</td>
+<td>Conexión TCP al puerto 22 de 1.1.1.1 bloqueada y registrada en OPNsense.</td>
+</tr>
+<tr>
+<td>Durante la medición de recursos</td>
+<td>Consumo elevado de RAM del anfitrión</td>
+<td>Se registraron 11,2 GB en uso (96 %); limitación pendiente de optimizar.</td>
+</tr>
+</tbody>
+</table>
+<p>Durante la preparación del laboratorio se produjeron incidencias relacionadas con la asignación de recursos, la configuración de las interfaces de red, el enrutamiento y las reglas del cortafuegos.</p>
+<p>Las incidencias de conectividad se resolvieron mediante la revisión de las configuraciones de VMware, OPNsense y Ubuntu Server, verificándose posteriormente la comunicación entre redes, el acceso a Internet, la resolución DNS y la administración remota mediante SSH.</p>
+<p>La principal limitación pendiente es el elevado consumo de memoria RAM del equipo anfitrión, que alcanzó el 96 % durante la ejecución simultánea de ambas máquinas virtuales. Será necesario tener en cuenta esta circunstancia al incorporar nuevos servicios en fases posteriores.</p>
+<h2 id="7-repositorio-github">7. Repositorio GitHub</h2>
+<p>Se ha creado el repositorio propio del proyecto y configurado la publicación automática de la documentación con Markdown, MkDocs, Material for MkDocs, GitHub Actions y GitHub Pages.</p>
+<ul>
+<li><strong>Repositorio:</strong> https://github.com/JCondeB/PIMAS-ASIR</li>
+<li><strong>Documentación web:</strong> https://jcondeb.github.io/PIMAS-ASIR/</li>
+</ul>
+<p>No se publican discos de máquinas virtuales, contraseñas ni claves privadas.</p>
+<h2 id="8-resultados-y-siguientes-pasos">8. Resultados y siguientes pasos</h2>
+<p>Se ha completado el despliegue inicial del laboratorio de virtualización mediante VMware Workstation 16 Pro, con las máquinas virtuales OPNsense 26.7 y Ubuntu Server 26.04.1 LTS.</p>
+<p>Se han configurado tres redes diferenciadas: WAN (VMnet8), usuarios (VMnet2) y servidores (VMnet3). Las pruebas realizadas confirman el funcionamiento simultáneo de ambas máquinas virtuales, la conectividad entre redes, el acceso a Internet desde Ubuntu Server y la administración remota mediante SSH desde Windows 11.</p>
+<p>También se ha verificado el funcionamiento de las reglas del cortafuegos mediante pruebas de tráfico permitido y bloqueado, así como el registro de las conexiones denegadas.</p>
+<p>La principal limitación detectada es el consumo de memoria RAM del equipo anfitrión, que alcanzó el 96 % (11,2 GB) durante el funcionamiento simultáneo de las máquinas virtuales.</p>
+<p>En la siguiente fase se abordará la instalación de GLPI y MariaDB, la configuración de usuarios y permisos y la incorporación de los servicios y medidas de seguridad previstos en el diseño del proyecto.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>
