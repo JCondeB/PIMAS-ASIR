@@ -1,0 +1,1650 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Proyecto Intermodular de ASIR">
+      
+      
+        <meta name="author" content="Jesús Conde">
+      
+      
+      
+        <link rel="prev" href="../entrega-3/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>Entrega 4 - Implementación de servicios y seguridad - PIMAS - Asesoría Tajo Gestión</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#entrega-4-instalacion-de-servicios-gestion-de-accesos-y-pruebas-funcionales" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="PIMAS - Asesoría Tajo Gestión" class="md-header__button md-logo" aria-label="PIMAS - Asesoría Tajo Gestión" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PIMAS - Asesoría Tajo Gestión
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Entrega 4 - Implementación de servicios y seguridad
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="PIMAS - Asesoría Tajo Gestión" class="md-nav__button md-logo" aria-label="PIMAS - Asesoría Tajo Gestión" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    PIMAS - Asesoría Tajo Gestión
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entrega-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entrega 1 - Propuesta inicial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entrega-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entrega 2 - Análisis y diseño
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entrega-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entrega 3 - Entorno de virtualización
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entrega 4 - Implementación de servicios y seguridad
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entrega 4 - Implementación de servicios y seguridad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-contexto-y-objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Contexto y objetivos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-optimizacion-de-recursos-del-laboratorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Optimización de recursos del laboratorio
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Optimización de recursos del laboratorio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-01-configuracion-de-memoria-de-opnsense-antes-del-ajuste" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-01 — Configuración de memoria de OPNsense antes del ajuste
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-02-configuracion-de-memoria-de-ubuntu-server-antes-del-ajuste" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-02 — Configuración de memoria de Ubuntu Server antes del ajuste
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-03-configuracion-de-memoria-tras-los-cambios-y-consumo-real-del-equipo-anfitrion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-03 — Configuración de memoria tras los cambios y consumo real del equipo anfitrión
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-coherencia-del-direccionamiento-y-topologia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Coherencia del direccionamiento y topología
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Coherencia del direccionamiento y topología">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-04-configuracion-de-interfaces-y-direcciones-ip-en-el-entorno-desplegado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-04 — Configuración de interfaces y direcciones IP en el entorno desplegado
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-instalacion-y-configuracion-del-servidor-web-y-php" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Instalación y configuración del servidor web y PHP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Instalación y configuración del servidor web y PHP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-05-instalacion-y-versiones-de-servidor-web-y-php" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-05 — Instalación y versiones de servidor web y PHP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-06-comprobacion-de-servicio-web-y-acceso-http-desde-el-cliente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-06 — Comprobación de servicio web y acceso HTTP desde el cliente
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-instalacion-y-configuracion-de-mariadb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Instalación y configuración de MariaDB
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Instalación y configuración de MariaDB">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-07-servicio-mariadb-activo-y-version-instalada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-07 — Servicio MariaDB activo y versión instalada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-08-base-de-datos-y-permisos-del-usuario-de-glpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-08 — Base de datos y permisos del usuario de GLPI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-instalacion-y-puesta-en-marcha-de-glpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Instalación y puesta en marcha de GLPI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Instalación y puesta en marcha de GLPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-09-comprobacion-de-requisitos-del-instalador-de-glpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-09 — Comprobación de requisitos del instalador de GLPI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-10-instalacion-finalizada-y-acceso-a-glpi-desde-el-navegador" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-10 — Instalación finalizada y acceso a GLPI desde el navegador
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-usuarios-perfiles-y-pruebas-de-acceso-en-glpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Usuarios, perfiles y pruebas de acceso en GLPI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Usuarios, perfiles y pruebas de acceso en GLPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-11-configuracion-de-usuarios-y-perfiles-de-prueba" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-11 — Configuración de usuarios y perfiles de prueba
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-12-verificacion-de-diferencias-de-acceso-entre-perfiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-12 — Verificación de diferencias de acceso entre perfiles
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-servicio-documental-y-permisos-de-carpetas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Servicio documental y permisos de carpetas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Servicio documental y permisos de carpetas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-13-estructura-de-carpetas-y-configuracion-de-permisos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-13 — Estructura de carpetas y configuración de permisos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-14-acceso-autorizado-desde-un-usuario-de-prueba" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-14 — Acceso autorizado desde un usuario de prueba
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-15-denegacion-de-acceso-a-una-carpeta-sin-autorizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-15 — Denegación de acceso a una carpeta sin autorización
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-reglas-de-cortafuegos-y-comprobaciones-de-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Reglas de cortafuegos y comprobaciones de red
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Reglas de cortafuegos y comprobaciones de red">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-16-reglas-de-opnsense-aplicadas-a-los-nuevos-servicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-16 — Reglas de OPNsense aplicadas a los nuevos servicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-17-prueba-de-conexion-permitida-y-registro-correspondiente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-17 — Prueba de conexión permitida y registro correspondiente
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-18-prueba-de-conexion-bloqueada-y-registro-correspondiente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-18 — Prueba de conexión bloqueada y registro correspondiente
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-pruebas-funcionales-e-incidencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Pruebas funcionales e incidencias
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Pruebas funcionales e incidencias">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#incidencias-y-soluciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Incidencias y soluciones
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-repositorio-y-publicacion-de-la-documentacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Repositorio y publicación de la documentación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-valoracion-del-estado-del-proyecto-y-siguientes-pasos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Valoración del estado del proyecto y siguientes pasos
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-contexto-y-objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Contexto y objetivos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-optimizacion-de-recursos-del-laboratorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Optimización de recursos del laboratorio
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Optimización de recursos del laboratorio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-01-configuracion-de-memoria-de-opnsense-antes-del-ajuste" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-01 — Configuración de memoria de OPNsense antes del ajuste
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-02-configuracion-de-memoria-de-ubuntu-server-antes-del-ajuste" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-02 — Configuración de memoria de Ubuntu Server antes del ajuste
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-03-configuracion-de-memoria-tras-los-cambios-y-consumo-real-del-equipo-anfitrion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-03 — Configuración de memoria tras los cambios y consumo real del equipo anfitrión
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-coherencia-del-direccionamiento-y-topologia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Coherencia del direccionamiento y topología
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Coherencia del direccionamiento y topología">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-04-configuracion-de-interfaces-y-direcciones-ip-en-el-entorno-desplegado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-04 — Configuración de interfaces y direcciones IP en el entorno desplegado
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-instalacion-y-configuracion-del-servidor-web-y-php" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Instalación y configuración del servidor web y PHP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Instalación y configuración del servidor web y PHP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-05-instalacion-y-versiones-de-servidor-web-y-php" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-05 — Instalación y versiones de servidor web y PHP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-06-comprobacion-de-servicio-web-y-acceso-http-desde-el-cliente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-06 — Comprobación de servicio web y acceso HTTP desde el cliente
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-instalacion-y-configuracion-de-mariadb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Instalación y configuración de MariaDB
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Instalación y configuración de MariaDB">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-07-servicio-mariadb-activo-y-version-instalada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-07 — Servicio MariaDB activo y versión instalada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-08-base-de-datos-y-permisos-del-usuario-de-glpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-08 — Base de datos y permisos del usuario de GLPI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-instalacion-y-puesta-en-marcha-de-glpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Instalación y puesta en marcha de GLPI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Instalación y puesta en marcha de GLPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-09-comprobacion-de-requisitos-del-instalador-de-glpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-09 — Comprobación de requisitos del instalador de GLPI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-10-instalacion-finalizada-y-acceso-a-glpi-desde-el-navegador" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-10 — Instalación finalizada y acceso a GLPI desde el navegador
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-usuarios-perfiles-y-pruebas-de-acceso-en-glpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Usuarios, perfiles y pruebas de acceso en GLPI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Usuarios, perfiles y pruebas de acceso en GLPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-11-configuracion-de-usuarios-y-perfiles-de-prueba" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-11 — Configuración de usuarios y perfiles de prueba
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-12-verificacion-de-diferencias-de-acceso-entre-perfiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-12 — Verificación de diferencias de acceso entre perfiles
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-servicio-documental-y-permisos-de-carpetas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Servicio documental y permisos de carpetas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Servicio documental y permisos de carpetas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-13-estructura-de-carpetas-y-configuracion-de-permisos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-13 — Estructura de carpetas y configuración de permisos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-14-acceso-autorizado-desde-un-usuario-de-prueba" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-14 — Acceso autorizado desde un usuario de prueba
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-15-denegacion-de-acceso-a-una-carpeta-sin-autorizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-15 — Denegación de acceso a una carpeta sin autorización
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-reglas-de-cortafuegos-y-comprobaciones-de-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Reglas de cortafuegos y comprobaciones de red
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Reglas de cortafuegos y comprobaciones de red">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-16-reglas-de-opnsense-aplicadas-a-los-nuevos-servicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-16 — Reglas de OPNsense aplicadas a los nuevos servicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-17-prueba-de-conexion-permitida-y-registro-correspondiente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-17 — Prueba de conexión permitida y registro correspondiente
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#captura-e4-18-prueba-de-conexion-bloqueada-y-registro-correspondiente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPTURA E4-18 — Prueba de conexión bloqueada y registro correspondiente
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-pruebas-funcionales-e-incidencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Pruebas funcionales e incidencias
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Pruebas funcionales e incidencias">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#incidencias-y-soluciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Incidencias y soluciones
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-repositorio-y-publicacion-de-la-documentacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Repositorio y publicación de la documentación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-valoracion-del-estado-del-proyecto-y-siguientes-pasos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Valoración del estado del proyecto y siguientes pasos
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="entrega-4-instalacion-de-servicios-gestion-de-accesos-y-pruebas-funcionales">Entrega 4 — Instalación de servicios, gestión de accesos y pruebas funcionales</h1>
+<p><strong>Proyecto:</strong> PIMAS — Asesoría Tajo Gestión, S. L.</p>
+<p><strong>Alumno:</strong> Jesús Conde</p>
+<p><strong>Fecha de entrega:</strong> 25 de noviembre de 2026</p>
+<p><strong>Estado:</strong> Implementación de servicios y pruebas funcionales completadas.</p>
+<hr />
+<h2 id="1-contexto-y-objetivos">1. Contexto y objetivos</h2>
+<p>Esta cuarta fase continúa el laboratorio de la Entrega 3. Se pretende optimizar el consumo de recursos, desplegar los servicios web y de base de datos, instalar GLPI, definir usuarios y perfiles y habilitar un mecanismo separado para acceder a documentación fiscal y laboral con permisos diferenciados.</p>
+<p>Se mantiene como referencia el entorno de VMware Workstation con OPNsense, Ubuntu Server y las redes internas 192.168.10.0/24 (usuarios) y 192.168.20.0/24 (servidores).</p>
+<p>Se documenta la diferencia respecto al direccionamiento previsto inicialmente en la Entrega 2, estableciendo las redes utilizadas en la implementación definitiva del laboratorio.</p>
+<h2 id="2-optimizacion-de-recursos-del-laboratorio">2. Optimización de recursos del laboratorio</h2>
+<p>Se ha optimizado la asignación de recursos de las máquinas virtuales para reducir el consumo de memoria del equipo anfitrión.</p>
+<table>
+<thead>
+<tr>
+<th>Máquina virtual</th>
+<th>RAM inicial</th>
+<th>RAM definitiva</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OPNsense</td>
+<td>3 GB</td>
+<td>2 GB</td>
+</tr>
+<tr>
+<td>Ubuntu Server</td>
+<td>3 GB</td>
+<td>3 GB</td>
+</tr>
+</tbody>
+</table>
+<h3 id="captura-e4-01-configuracion-de-memoria-de-opnsense-antes-del-ajuste">CAPTURA E4-01 — Configuración de memoria de OPNsense antes del ajuste</h3>
+<p><img alt="E4-01" src="../imagenes/entrega4/E4-01.jpg" /></p>
+<p>Inicialmente, la máquina virtual OPNsense tenía asignados 3 GB de memoria RAM. Se revisa esta configuración con el objetivo de reducir el consumo de recursos del laboratorio.</p>
+<h3 id="captura-e4-02-configuracion-de-memoria-de-ubuntu-server-antes-del-ajuste">CAPTURA E4-02 — Configuración de memoria de Ubuntu Server antes del ajuste</h3>
+<p><img alt="E4-02" src="../imagenes/entrega4/E4-02.jpg" /></p>
+<p>Se mantienen los 3 GB de memoria RAM asignados a Ubuntu Server para disponer de recursos suficientes durante la instalación y las pruebas de Apache, PHP, MariaDB y GLPI.</p>
+<h3 id="captura-e4-03-configuracion-de-memoria-tras-los-cambios-y-consumo-real-del-equipo-anfitrion">CAPTURA E4-03 — Configuración de memoria tras los cambios y consumo real del equipo anfitrión</h3>
+<p><img alt="E4-03.1" src="../imagenes/entrega4/E4-03.1.jpg" /></p>
+<p><img alt="E4-03.2" src="../imagenes/entrega4/E4-03.2.jpg" /></p>
+<p>Tras reducir la memoria RAM de OPNsense de 3 GB a 2 GB, manteniendo Ubuntu Server con 3 GB, se ha comprobado el consumo del equipo anfitrión con ambas máquinas virtuales encendidas.</p>
+<table>
+<thead>
+<tr>
+<th>Indicador</th>
+<th>Antes</th>
+<th>Después</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Consumo de memoria RAM</td>
+<td>96 %</td>
+<td>86 %</td>
+</tr>
+<tr>
+<td>Memoria utilizada</td>
+<td>11,2 GB</td>
+<td>10,1 GB</td>
+</tr>
+</tbody>
+</table>
+<p>Tras el ajuste quedan aproximadamente 1,6 GB disponibles. Esta modificación permite reducir el consumo de memoria sin disminuir los recursos asignados a Ubuntu Server.</p>
+<h2 id="3-coherencia-del-direccionamiento-y-topologia">3. Coherencia del direccionamiento y topología</h2>
+<p>Las redes 10.10.10.0/24 y 10.10.20.0/24 se establecieron durante la fase de diseño preliminar.</p>
+<p>Durante la implementación se utilizaron las redes 192.168.10.0/24 para usuarios y 192.168.20.0/24 para servidores, estableciéndose como direccionamiento definitivo del laboratorio.</p>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Dirección IP o configuración</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OPNsense WAN (em0)</td>
+<td>DHCP mediante NAT de VMware</td>
+</tr>
+<tr>
+<td>OPNsense LAN (em1)</td>
+<td>192.168.10.1/24</td>
+</tr>
+<tr>
+<td>OPNsense OPT1 (em2)</td>
+<td>192.168.20.1/24</td>
+</tr>
+<tr>
+<td>Ubuntu Server</td>
+<td>192.168.20.10/24</td>
+</tr>
+<tr>
+<td>Cliente Windows 11</td>
+<td>192.168.10.2</td>
+</tr>
+</tbody>
+</table>
+<h3 id="captura-e4-04-configuracion-de-interfaces-y-direcciones-ip-en-el-entorno-desplegado">CAPTURA E4-04 — Configuración de interfaces y direcciones IP en el entorno desplegado</h3>
+<p><img alt="E4-04" src="../imagenes/entrega4/E4-04.jpg" /></p>
+<p>Mediante el comando <code>ip -4 addr show ens33</code> se ha comprobado que Ubuntu Server mantiene la dirección IP estática 192.168.20.10/24 después del reinicio.</p>
+<p><img alt="E4-04.1" src="../imagenes/entrega4/E4-04.1.jpg" /></p>
+<p>Se ha comprobado desde la consola de OPNsense que las interfaces mantienen el direccionamiento establecido durante la implementación.</p>
+<p>Esta configuración permite mantener separadas las redes de usuarios y servidores, utilizando OPNsense como punto de comunicación y filtrado entre ambas.</p>
+<h2 id="4-instalacion-y-configuracion-del-servidor-web-y-php">4. Instalación y configuración del servidor web y PHP</h2>
+<p>Se ha preparado el entorno web de Ubuntu Server mediante la instalación de Apache2, PHP y las extensiones necesarias para GLPI.</p>
+<h3 id="captura-e4-05-instalacion-y-versiones-de-servidor-web-y-php">CAPTURA E4-05 — Instalación y versiones de servidor web y PHP</h3>
+<p><img alt="E4-05" src="../imagenes/entrega4/E4-05.jpg" /></p>
+<p>Mediante los comandos <code>apache2 -v</code> y <code>php -v</code> se ha comprobado la instalación de las siguientes versiones:</p>
+<table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Versión</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Apache</td>
+<td>2.4.66</td>
+</tr>
+<tr>
+<td>PHP</td>
+<td>8.5.4</td>
+</tr>
+</tbody>
+</table>
+<p>Se han incorporado las extensiones necesarias para la conexión con MariaDB, el tratamiento de imágenes, la gestión de idiomas, archivos XML y archivos comprimidos, así como funcionalidades adicionales de autenticación y caché.</p>
+<p>Durante la instalación se detectó que el paquete php-imap no estaba disponible en los repositorios utilizados. Al tratarse de una extensión opcional para las funciones iniciales previstas, se decidió continuar sin ella.</p>
+<h3 id="captura-e4-06-comprobacion-de-servicio-web-y-acceso-http-desde-el-cliente">CAPTURA E4-06 — Comprobación de servicio web y acceso HTTP desde el cliente</h3>
+<p><img alt="E4-06" src="../imagenes/entrega4/E4-06.jpg" /></p>
+<p>Se ha realizado una prueba de acceso HTTP desde el equipo anfitrión Windows 11 hacia Ubuntu Server mediante la dirección <code>http://192.168.20.10</code>.</p>
+<p>El navegador ha mostrado correctamente la página predeterminada de Apache2, confirmando que el servidor web se encuentra operativo y es accesible desde la red de usuarios.</p>
+<h2 id="5-instalacion-y-configuracion-de-mariadb">5. Instalación y configuración de MariaDB</h2>
+<p>Se ha instalado y configurado MariaDB como sistema gestor de bases de datos para GLPI.</p>
+<p>Se ha creado una base de datos independiente y un usuario específico con permisos limitados a dicha base de datos.</p>
+<h3 id="captura-e4-07-servicio-mariadb-activo-y-version-instalada">CAPTURA E4-07 — Servicio MariaDB activo y versión instalada</h3>
+<p><img alt="E4-07" src="../imagenes/entrega4/E4-07.jpg" /></p>
+<p>Se ha instalado MariaDB 11.8.6. Mediante el comando <code>systemctl status mariadb</code> se ha comprobado que el servicio está activo y habilitado para iniciarse automáticamente.</p>
+<p>La versión instalada se ha verificado mediante <code>mariadb --version</code>.</p>
+<h3 id="captura-e4-08-base-de-datos-y-permisos-del-usuario-de-glpi">CAPTURA E4-08 — Base de datos y permisos del usuario de GLPI</h3>
+<p><img alt="E4-08" src="../imagenes/entrega4/E4-08.jpg" /></p>
+<p>Se ha creado la base de datos <code>glpi</code> con codificación utf8mb4 y un usuario específico denominado <code>glpi_user</code>, limitado a conexiones locales.</p>
+<p>Se han concedido los privilegios necesarios sobre la base de datos glpi, sin otorgar permisos administrativos sobre el resto de las bases de datos del servidor.</p>
+<p>Mediante <code>SHOW GRANTS</code> se ha verificado que los permisos están correctamente asignados.</p>
+<p><img alt="E4-08.1" src="../imagenes/entrega4/E4-08.1.jpg" /></p>
+<p>Se ha realizado una prueba de conexión mediante el comando:</p>
+<pre><code class="language-bash">mariadb -u glpi_user -p glpi
+</code></pre>
+<p>La autenticación se ha completado correctamente y se ha accedido a la base de datos glpi, verificando que el usuario de la aplicación dispone de acceso sin utilizar la cuenta administradora.</p>
+<h2 id="6-instalacion-y-puesta-en-marcha-de-glpi">6. Instalación y puesta en marcha de GLPI</h2>
+<p>Se ha instalado y puesto en funcionamiento GLPI 12.0.2 en Ubuntu Server, utilizando Apache2 como servidor web y MariaDB 11.8.6 como gestor de bases de datos.</p>
+<p>Durante el proceso se ha verificado la compatibilidad del entorno mediante el instalador de GLPI.</p>
+<h3 id="captura-e4-09-comprobacion-de-requisitos-del-instalador-de-glpi">CAPTURA E4-09 — Comprobación de requisitos del instalador de GLPI</h3>
+<p><img alt="E4-09" src="../imagenes/entrega4/E4-09.jpg" /></p>
+<p>Se ha comprobado la compatibilidad del entorno, incluyendo la versión de PHP, las extensiones necesarias y los permisos de los directorios.</p>
+<p>Tras una incidencia durante la inicialización de la base de datos desde la interfaz web, se completó la instalación mediante la consola de GLPI, generando correctamente las tablas, los datos iniciales y las claves de seguridad.</p>
+<h3 id="captura-e4-10-instalacion-finalizada-y-acceso-a-glpi-desde-el-navegador">CAPTURA E4-10 — Instalación finalizada y acceso a GLPI desde el navegador</h3>
+<p><img alt="E4-10" src="../imagenes/entrega4/E4-10.jpg" /></p>
+<p>Se ha comprobado el acceso al panel de administración desde el equipo anfitrión Windows 11 mediante la dirección <code>http://192.168.20.10/</code>, confirmando el funcionamiento del servicio web y la comunicación entre las redes configuradas en OPNsense.</p>
+<p>Finalmente, se ha modificado la contraseña predeterminada de la cuenta administradora.</p>
+<h2 id="7-usuarios-perfiles-y-pruebas-de-acceso-en-glpi">7. Usuarios, perfiles y pruebas de acceso en GLPI</h2>
+<h3 id="captura-e4-11-configuracion-de-usuarios-y-perfiles-de-prueba">CAPTURA E4-11 — Configuración de usuarios y perfiles de prueba</h3>
+<p><img alt="E4-11" src="../imagenes/entrega4/E4-11.jpg" /></p>
+<p>Se ha accedido al apartado Administración &gt; Usuarios de GLPI para revisar las cuentas creadas automáticamente durante la instalación y aplicar medidas básicas de seguridad.</p>
+<table>
+<thead>
+<tr>
+<th>Cuenta</th>
+<th>Estado tras la revisión</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>glpi</td>
+<td>Activa, contraseña modificada</td>
+</tr>
+<tr>
+<td>glpi-system</td>
+<td>Activa</td>
+</tr>
+<tr>
+<td>post-only</td>
+<td>Desactivada</td>
+</tr>
+<tr>
+<td>tech</td>
+<td>Desactivada</td>
+</tr>
+<tr>
+<td>normal</td>
+<td>Desactivada</td>
+</tr>
+</tbody>
+</table>
+<p>Se han mantenido activas las cuentas glpi, utilizada para la administración de la aplicación, y glpi-system, correspondiente al funcionamiento interno del sistema.</p>
+<h3 id="captura-e4-12-verificacion-de-diferencias-de-acceso-entre-perfiles">CAPTURA E4-12 — Verificación de diferencias de acceso entre perfiles</h3>
+<p><img alt="E4-12" src="../imagenes/entrega4/E4-12.jpg" /></p>
+<p>Se ha realizado una prueba de acceso utilizando la cuenta <code>empleado.prueba</code>, creada en GLPI y configurada con el perfil Self-Service.</p>
+<p>El inicio de sesión se ha completado correctamente desde una ventana de incógnito del navegador del equipo anfitrión Windows 11.</p>
+<p>Se ha comprobado que el usuario accede a una interfaz simplificada, orientada a la comunicación de incidencias, solicitud de servicios y consulta de peticiones, sin mostrar las opciones de administración disponibles para el perfil Super-Admin.</p>
+<h2 id="8-servicio-documental-y-permisos-de-carpetas">8. Servicio documental y permisos de carpetas</h2>
+<p>Se ha implementado Samba como servicio de archivos independiente de GLPI, destinado al almacenamiento de documentación fiscal y laboral.</p>
+<p>Se han creado dos carpetas compartidas, General y Confidencial, con permisos diferenciados mediante los grupos empleados y direccion.</p>
+<p>La elección de Samba permite acceder a los recursos compartidos desde Windows 11 sin necesidad de instalar aplicaciones adicionales.</p>
+<h3 id="captura-e4-13-estructura-de-carpetas-y-configuracion-de-permisos">CAPTURA E4-13 — Estructura de carpetas y configuración de permisos</h3>
+<p><img alt="E4-13" src="../imagenes/entrega4/E4-13.jpg" /></p>
+<table>
+<thead>
+<tr>
+<th>Carpeta</th>
+<th>Ruta</th>
+<th>Grupo asignado</th>
+<th>Permisos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>General</td>
+<td>/srv/samba/general</td>
+<td>empleados</td>
+<td>2770</td>
+</tr>
+<tr>
+<td>Confidencial</td>
+<td>/srv/samba/confidencial</td>
+<td>direccion</td>
+<td>2770</td>
+</tr>
+</tbody>
+</table>
+<p>Esta configuración restringe el acceso a los usuarios autorizados. El permiso setgid permite que los nuevos elementos hereden el grupo del directorio correspondiente.</p>
+<h3 id="captura-e4-14-acceso-autorizado-desde-un-usuario-de-prueba">CAPTURA E4-14 — Acceso autorizado desde un usuario de prueba</h3>
+<p><img alt="E4-14" src="../imagenes/entrega4/E4-14.jpg" /></p>
+<p>Se verifica que el usuario empleado1 puede acceder desde Windows 11 a la carpeta compartida General mediante Samba, confirmando el funcionamiento de la conexión y los permisos asignados.</p>
+<h3 id="captura-e4-15-denegacion-de-acceso-a-una-carpeta-sin-autorizacion">CAPTURA E4-15 — Denegación de acceso a una carpeta sin autorización</h3>
+<p><img alt="E4-15" src="../imagenes/entrega4/E4-15.jpg" /></p>
+<p>Se comprueba que el usuario empleado1 no puede acceder a la carpeta Confidencial, ya que no pertenece al grupo direccion.</p>
+<p>Samba deniega el acceso, confirmando el funcionamiento de los permisos establecidos en la prueba realizada.</p>
+<h2 id="9-reglas-de-cortafuegos-y-comprobaciones-de-red">9. Reglas de cortafuegos y comprobaciones de red</h2>
+<p>Se han configurado reglas de cortafuegos en OPNsense para controlar el tráfico entre la red de usuarios (192.168.10.0/24) y la red de servidores (192.168.20.0/24).</p>
+<h3 id="captura-e4-16-reglas-de-opnsense-aplicadas-a-los-nuevos-servicios">CAPTURA E4-16 — Reglas de OPNsense aplicadas a los nuevos servicios</h3>
+<p><img alt="E4-16" src="../imagenes/entrega4/E4-16.jpg" /></p>
+<table>
+<thead>
+<tr>
+<th>Servicio</th>
+<th>Origen</th>
+<th>Destino</th>
+<th>Protocolo y puerto</th>
+<th>Acción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GLPI</td>
+<td>Red de usuarios</td>
+<td>192.168.20.10</td>
+<td>TCP/80</td>
+<td>Permitir</td>
+</tr>
+<tr>
+<td>Samba</td>
+<td>Red de usuarios</td>
+<td>192.168.20.10</td>
+<td>TCP/445</td>
+<td>Permitir</td>
+</tr>
+<tr>
+<td>SSH</td>
+<td>Equipo autorizado</td>
+<td>192.168.20.10</td>
+<td>TCP/22</td>
+<td>Permitir</td>
+</tr>
+<tr>
+<td>Resto del tráfico IPv4 hacia servidores</td>
+<td>Red de usuarios</td>
+<td>192.168.20.0/24</td>
+<td>Cualquiera</td>
+<td>Bloquear</td>
+</tr>
+</tbody>
+</table>
+<p>Las reglas específicas de acceso se sitúan antes de la regla de bloqueo de accesos no autorizados a la red de servidores.</p>
+<h3 id="captura-e4-17-prueba-de-conexion-permitida-y-registro-correspondiente">CAPTURA E4-17 — Prueba de conexión permitida y registro correspondiente</h3>
+<p><img alt="E4-17.1" src="../imagenes/entrega4/E4-17.1.jpg" /></p>
+<p><img alt="E4-17.2" src="../imagenes/entrega4/E4-17.2.jpg" /></p>
+<p>Se verifica mediante PowerShell la conexión al puerto TCP/80 del servidor Ubuntu.</p>
+<pre><code class="language-powershell">Test-NetConnection 192.168.20.10 -Port 80
+</code></pre>
+<p>Resultado: <code>TcpTestSucceeded : True</code>.</p>
+<p>OPNsense registra el tráfico como permitido, confirmando el funcionamiento de la regla de acceso a GLPI.</p>
+<h3 id="captura-e4-18-prueba-de-conexion-bloqueada-y-registro-correspondiente">CAPTURA E4-18 — Prueba de conexión bloqueada y registro correspondiente</h3>
+<p><img alt="E4-18.1" src="../imagenes/entrega4/E4-18.1.jpg" /></p>
+<p><img alt="E4-18.2" src="../imagenes/entrega4/E4-18.2.jpg" /></p>
+<p>Se realiza una prueba de conexión directa al puerto TCP/3306 de MariaDB desde la red de usuarios.</p>
+<pre><code class="language-powershell">Test-NetConnection 192.168.20.10 -Port 3306
+</code></pre>
+<p>Resultado: <code>TcpTestSucceeded : False</code>.</p>
+<p>OPNsense registra los intentos de conexión como bloqueados, impidiendo el acceso directo no autorizado a la base de datos.</p>
+<h2 id="10-pruebas-funcionales-e-incidencias">10. Pruebas funcionales e incidencias</h2>
+<table>
+<thead>
+<tr>
+<th>Prueba</th>
+<th>Resultado esperado</th>
+<th>Resultado obtenido</th>
+<th>Evidencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Acceso a GLPI</td>
+<td>Acceso correcto desde Windows</td>
+<td>Correcto</td>
+<td>E4-10, E4-17</td>
+</tr>
+<tr>
+<td>Conexión GLPI-MariaDB</td>
+<td>Conexión operativa con la base de datos</td>
+<td>Correcto. Autenticación en MariaDB y funcionamiento de GLPI</td>
+<td>E4-07, E4-08, E4-10</td>
+</tr>
+<tr>
+<td>Acceso según perfil GLPI</td>
+<td>Acceso limitado según el perfil asignado</td>
+<td>Correcto</td>
+<td>E4-11, E4-12</td>
+</tr>
+<tr>
+<td>Acceso autorizado a carpeta</td>
+<td>Acceso a General</td>
+<td>Correcto</td>
+<td>E4-14</td>
+</tr>
+<tr>
+<td>Acceso denegado a carpeta</td>
+<td>Bloqueo de acceso a Confidencial</td>
+<td>Correcto</td>
+<td>E4-15</td>
+</tr>
+<tr>
+<td>Filtrado de OPNsense</td>
+<td>Permitir tráfico autorizado y bloquear el resto del tráfico IPv4 hacia servidores</td>
+<td>Correcto en las pruebas realizadas</td>
+<td>E4-16, E4-17, E4-18</td>
+</tr>
+</tbody>
+</table>
+<h3 id="incidencias-y-soluciones">Incidencias y soluciones</h3>
+<p>Durante la implementación se han producido las siguientes incidencias:</p>
+<ul>
+<li><strong>Error 404 en GLPI:</strong> solucionado mediante la revisión de la configuración de Apache.</li>
+<li><strong>Error 500 en GLPI:</strong> corregido ajustando la configuración de reescritura de Apache.</li>
+<li><strong>Error de registro de usuario en Samba:</strong> solucionado verificando la existencia del usuario en Ubuntu y repitiendo su registro en Samba.</li>
+<li><strong>Paquete php-imap no disponible:</strong> se continuó la instalación sin esta extensión opcional.</li>
+<li><strong>Error de inicialización de la base de datos de GLPI:</strong> solucionado completando la instalación mediante la consola de GLPI.</li>
+</ul>
+<p>Tras aplicar las correcciones, se han repetido las pruebas correspondientes, obteniendo resultados satisfactorios.</p>
+<h2 id="11-repositorio-y-publicacion-de-la-documentacion">11. Repositorio y publicación de la documentación</h2>
+<ul>
+<li><a href="https://github.com/JCondeB/PIMAS-ASIR">Repositorio GitHub</a></li>
+<li><a href="https://jcondeb.github.io/PIMAS-ASIR/">Documentación publicada mediante GitHub Pages</a></li>
+</ul>
+<p>Se ha incorporado la documentación de la Entrega 4 al repositorio GitHub en formato Markdown, junto con las evidencias gráficas de la implementación y las pruebas realizadas.</p>
+<p>Se ha actualizado la navegación de MkDocs y se ha verificado la publicación de la Entrega 4 mediante GitHub Pages, comprobando la correcta visualización de la documentación y las 23 imágenes correspondientes a las pruebas realizadas.</p>
+<p>La evidencia E4-19 de la publicación se ha incorporado al documento de entrega.</p>
+<h2 id="12-valoracion-del-estado-del-proyecto-y-siguientes-pasos">12. Valoración del estado del proyecto y siguientes pasos</h2>
+<p>Durante esta fase se ha completado la implementación de GLPI, MariaDB, Apache y Samba sobre Ubuntu Server, así como la gestión de usuarios, perfiles y permisos de acceso.</p>
+<p>También se han configurado y verificado las reglas de filtrado de OPNsense entre las redes de usuarios y servidores.</p>
+<p>Las pruebas funcionales realizadas han obtenido resultados satisfactorios y las incidencias detectadas durante la implementación han sido resueltas.</p>
+<p>Como limitaciones, el entorno dispone de recursos de hardware reducidos y el acceso a GLPI se realiza actualmente mediante HTTP.</p>
+<p>En la siguiente fase se abordarán las siguientes tareas:</p>
+<ul>
+<li>Copias de seguridad y pruebas de restauración.</li>
+<li>Acceso remoto mediante VPN según su viabilidad.</li>
+<li>Configuración de HTTPS.</li>
+<li>Centralización de registros.</li>
+<li>Valoración de mecanismos IDS/IPS.</li>
+<li>Bastionado de los servicios.</li>
+<li>Comprobaciones finales de seguridad.</li>
+</ul>
+<hr />
+<p>PIMAS · Asesoría Tajo Gestión · Entrega 4</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>
