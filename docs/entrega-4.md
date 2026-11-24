@@ -303,9 +303,9 @@ Tras aplicar las correcciones, se han repetido las pruebas correspondientes, obt
 
 Se ha incorporado la documentación de la Entrega 4 al repositorio GitHub en formato Markdown, junto con las evidencias gráficas de la implementación y las pruebas realizadas.
 
-La publicación de esta entrega se realizará mediante MkDocs y GitHub Pages.
+Se ha actualizado la navegación de MkDocs y se ha verificado la publicación de la Entrega 4 mediante GitHub Pages, comprobando la correcta visualización de la documentación y las 23 imágenes correspondientes a las pruebas realizadas.
 
-La evidencia E4-19 se incorporará al documento de entrega tras comprobar la publicación.
+La evidencia E4-19 de la publicación se ha incorporado al documento de entrega.
 
 ## 12. Valoración del estado del proyecto y siguientes pasos
 
